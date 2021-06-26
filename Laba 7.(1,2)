@@ -1,0 +1,136 @@
+#include <cmath>
+#include <iostream>
+
+using namespace std;
+
+void invert(int& r) { //Функция инвертирования числа (Начинается с 20-ой степени двойки)
+    int k = 20; //степень
+    long int br = 0; //31-ая степень двойки (максимальный long int)
+    long int RES = 0;
+    long int Srand = r;
+
+    while (k > -1) { //перевод в двоичный вид
+        br = pow(2, k);
+        if (br <= r) {
+            r -= br;
+            RES += pow(10, k);
+        }
+        k = k - 1;
+    }
+    cout << "двоичное число (" << RES << ") десятичное (";
+    long int rez = 0;
+    k = 0;
+    while (RES > 0) { //инвертирование
+        br = RES % 10;
+        RES /= 10;
+        if (br == 1) {
+
+        }
+        else
+        {
+            rez = rez + pow(2, k);
+        }
+        k++;
+    }
+    r = rez;
+}
+
+void srgar(int r1, int r2) { //Функция среднего гармонического
+    if (r1 != 0 && r2 != 0)
+    {
+        double r3 = (2 * r1 * r2) / (r1 + r2);
+        cout << r3 << endl;
+    }
+    else
+        cout << "(нет) Одно из значений содержит 0";
+}
+
+void sort(double* b1, double* b2, double* b3) { // принимает адреса чисел и сортирует их.
+    double a1 = *b1, a2 = *b2, a3 = *b3;
+    if (a1 < a2) {
+        if (a1 < a3) {
+            if (a2 < a3) {
+
+                *b1 = a1;
+                *b2 = a2;
+                *b3 = a3;
+            }
+            else
+            {
+                *b1 = a1;
+                *b2 = a3;
+                *b3 = a2;
+            }
+        }
+        else
+        {
+            *b1 = a3;
+            *b2 = a1;
+            *b3 = a2;
+        }
+    }
+    else
+    {
+        if (a2 < a3) {
+            if (a1 > a3) {
+                *b1 = a2;
+                *b2 = a3;
+                *b3 = a1;
+            }
+            else {
+                *b1 = a2;
+                *b2 = a1;
+                *b3 = a3;
+            }
+        }
+        else {
+            *b1 = a3;
+            *b2 = a2;
+            *b3 = a1;
+        }
+    }
+}
+
+int main()
+{
+    setlocale(LC_ALL, "ru");
+    int a, b;
+    cout << "*********************" << endl;
+    cout << "Задание 1" << endl;
+    cout << "*********************" << endl;
+    cout << "Введите два числа" << endl;
+    cout << "Введите первое число - " << endl;
+    cin >> a;
+    cout << "Введите второе число - " << endl;
+    cin >> b;
+    cout << "Инвертирование первого числа = ";
+    invert(a);
+    cout << a << ")" << endl;
+    cout << "Инвертирование второго числа = ";
+    invert(b);
+    cout << b << ")" << endl;
+    cout << "Среднее значение инверсий: " << (a + b) / 2 << endl;
+    cout << "Среднее гармоническое двух инвертированных чисел = ";
+    srgar(a, b);
+
+    cout << endl;
+    cout << endl;
+    cout << "*********************" << endl;
+        cout << "Задание 2" << endl;
+    cout << "*********************" << endl;
+
+    double a1, a2, a3;
+    cout << "Введите три числа" << endl;
+    cout << "Введите первое число - " << endl;
+    cin >> a1;
+    cout << "Введите второе число - " << endl;
+    cin >> a2;
+    cout << "Введите третье число - " << endl;
+    cin >> a3;
+    sort(&a1, &a2, &a3);
+    cout << "Отсортированные числа " << endl;
+    cout << "1 число - " << a1 << endl;
+    cout << "2 число - " << a2 << endl;
+    cout << "3 число - " << a3 << endl;
+}
+
